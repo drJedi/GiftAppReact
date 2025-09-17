@@ -2,6 +2,7 @@
   "name": "react-gift-finder",
   "version": "1.0.0",
   "description": "Aplikacja do znajdowania idealnych prezentów",
+  "homepage": "https://drJedi.github.io/react-gift-finder",
   "main": "index.js",
   "scripts": {
     "start": "react-scripts start",
@@ -28,5 +29,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
   }
 }
