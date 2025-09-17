@@ -1,0 +1,103 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ :root {
+  /* Colors */
+  --color-bg-gradient-start: #fff;
+  --color-bg-gradient-end: #ff0000;
+  --color-surface: #ffffff;
+  --color-surface-tint: #f8f9ff;
+  --color-text-primary: #333333;
+  --color-text-secondary: #666666;
+  --color-text-inverse: #ffffff;
+  --color-accent: #667eea;
+
+  /* Button gradient */
+  --red-10:#F2b3b6;
+  --red-30:#e2797e;
+  --red-50: #C30c15;
+  --red-70: #a00d0c;
+  --btn-grad-start: #ff6b6b;
+  --btn-grad-end: #ee5a24;
+  --btn-hover-start: #ff5252;
+  --btn-hover-end: #d63031;
+
+  /* Progress gradient */
+  --progress-start: #ff6b6b;
+  --progress-end: #667eea;
+
+  /* Shadows */
+  --shadow-md: 0 8px 25px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 12px 35px rgba(0, 0, 0, 0.15);
+  --shadow-btn: 0 4px 15px rgba(255, 107, 107, 0.3);
+  --shadow-btn-hover: 0 6px 20px rgba(255, 107, 107, 0.4);
+
+  /* Radii */
+  --radius-lg: 20px;
+  --radius-md: 15px;
+  --radius-pill: 50px;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(135deg, var(--color-bg-gradient-start) 0%, var(--color-bg-gradient-end) 100%);
+  min-height: 100vh;
+  color: var(--color-text-primary);
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+/* component styles moved to separate files */
+
