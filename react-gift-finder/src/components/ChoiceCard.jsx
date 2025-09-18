@@ -1,6 +1,7 @@
 import React from 'react';
 
 const ChoiceCard = ({ image, description, onClick, selected }) => {
+  // console.log('ChoiceCard image:', image);
   return (
     <div 
       className={`choice-card ${selected ? 'is-selected' : ''}`}

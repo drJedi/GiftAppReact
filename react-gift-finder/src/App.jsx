@@ -31,7 +31,7 @@ const App = () => {
     {
       title: "Jakiego prezentu szukasz?",
       choices: Object.keys(productAttributes.categories).map(category => ({
-        src: `./imagesApp/${categoryImageMap[category]}`,
+        src: `${process.env.PUBLIC_URL}/imagesApp/${categoryImageMap[category]}`,
         description: category
       })),
       key: 'category'
@@ -39,7 +39,7 @@ const App = () => {
     {
       title: "Ile możesz przeznaczyć na prezent?",
       choices: Object.keys(productAttributes.prices).map(price => ({
-        src: `./imagesApp/${priceImageMap[price]}`,
+        src: `${process.env.PUBLIC_URL}/imagesApp/${priceImageMap[price]}`,
         description: price
       })),
       key: 'priceRange'

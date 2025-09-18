@@ -203,7 +203,7 @@ export const produuctRelations ={
 };
 
 export const products = [
-  { name: "Brelok ze zdjęciem", src: "", description: 'Brelok ze zdjęciem', link: "https://www.cewe.pl/fotoprezenty/brelok-ze-zdjeciem.html" },
+  { name: "Brelok ze zdjęciem", src: "/imagesApp/brelok.jpg", description: 'Brelok ze zdjęciem', link: "https://www.cewe.pl/fotoprezenty/brelok-ze-zdjeciem.html" },
   { name: "Fotopuzzle PREMIUM", src: "", description: 'Puzzle z własnym zdjęciem', link: "https://www.cewe.pl/fotoprezenty/fotopuzzle-premium.html" },
   { name: "Personalizowany plakat", src: "", description: 'Plakat z własnym nadrukiem', link: "https://www.cewe.pl/fotoplakaty.html" },
   { name: "Torba PREMIUM ze zdjęciem", src: "", description: 'Torba PREMIUM ze zdjęciem', link: "https://www.cewe.pl/fotoprezenty/torba-premium-ze-zdjeciem.html" },
@@ -371,35 +371,35 @@ export const forWhoShortcuts = {
 
 export const recipientOptions = [
   { 
-    src: './imagesApp/rodzice.png', 
+    src: `${process.env.PUBLIC_URL}/imagesApp/rodzice.png`, 
     description: 'Rodzicom' 
   },
   { 
-    src: './imagesApp/dzieci_do_6_lat.png', 
+    src: `${process.env.PUBLIC_URL}/imagesApp/dzieci_do_6_lat.png`, 
     description: 'Dzieciom do 6 lat' 
   },
   { 
-    src: './imagesApp/nastolatki.png', 
+    src: `${process.env.PUBLIC_URL}/imagesApp/nastolatki.png`, 
     description: 'Nastolatkom' 
   },
   { 
-    src: './imagesApp/druga_polowka.png', 
+    src: `${process.env.PUBLIC_URL}/imagesApp/druga_polowka.png`, 
     description: 'Drugiej Połówce' 
   },
   { 
-    src: './imagesApp/ciocia_wujek.png', 
+    src: `${process.env.PUBLIC_URL}/imagesApp/ciocia_wujek.png`, 
     description: 'Cioci i wujkowi' 
   },
   { 
-    src: './imagesApp/brat_siostra.png', 
+    src: `${process.env.PUBLIC_URL}/imagesApp/brat_siostra.png`, 
     description: 'Bratu i siostrze' 
   },
   { 
-    src: './imagesApp/przyjaciele.png', 
+    src: `${process.env.PUBLIC_URL}/imagesApp/przyjaciele.png`, 
     description: 'Przyjaciołom' 
   },
   { 
-    src: './imagesApp/dziadkowie.png', 
+    src: `${process.env.PUBLIC_URL}/imagesApp/dziadkowie.png`, 
     description: 'Dziadkom' 
   }
 ];
@@ -429,7 +429,7 @@ export function generateProductFileNames(userForWho, productNames) {
     console.log(normalizedProduct)
     return {
       name: product,
-      src: `./imagesApp/${normalizedProduct}.jpg`
+      src: `${process.env.PUBLIC_URL}/imagesApp/${normalizedProduct}.jpg`
     };
   });
 }
