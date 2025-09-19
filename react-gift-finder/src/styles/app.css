@@ -18,5 +18,6 @@
   animation: fadeIn 1s ease-out;
 }
 
-
-
+@media (max-width: 768px) {
+  .app__main{ max-height: 70%;}
+}

@@ -10,10 +10,10 @@
 .question__title {
   font-size: 2rem;
   font-weight: 600;
-  color: var(--color-text-inverse);
+  color: var(--red-50);
   text-align: center;
   margin-bottom: 2rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  /* text-shadow: .5px .5px .5px rgba(0, 0, 0, 0.3); */
 }
 
 @media (max-width: 768px) {
@@ -44,7 +44,7 @@
 }
 
 @media (max-width: 768px) {
-  .question__grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; }
+  .question__grid { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1rem; }
 }
 
 .question__progress {

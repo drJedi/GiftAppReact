@@ -5,10 +5,10 @@ import Button from './Button';
 const ResultsStep = ({ products, onReset }) => {
   return (
     <div className="results">
-      <h2 className="results__title">Prezentownik: nasz propozycje</h2>
-      <p className="results__subtitle">
+      <h2 className="results__title">Prezentownik: nasze propozycje</h2>
+      {/* <p className="results__subtitle">
         Oto nasze rekomendacje na podstawie Twoich wyborów
-      </p>
+      </p> */}
       
       {products.length === 0 ? (
         <div className="results__empty">

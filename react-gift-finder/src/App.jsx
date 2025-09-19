@@ -100,7 +100,7 @@ const App = () => {
         <div className="app__welcome">
           <Header />
           <Button onClick={handleStart}>
-            SKORZYSTAJ Z PREZENTOWNIKA
+            ZNAJDŹ PREZENT
           </Button>
         </div>
       );

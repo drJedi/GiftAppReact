@@ -12,13 +12,13 @@ export const productAttributes = {
   },
   forWho: {
     "Rodzicom": [],
+    "Dziadkom": [],
     "Dzieciom do 6 lat": [],
     "Nastolatkom": [],
     "Drugiej Połówce": [],
     "Cioci i wujkowi": [],
     "Bratu i siostrze": [],
     "Przyjaciołom": [],
-    "Dziadkom": []
   }
 };
 
@@ -360,19 +360,27 @@ export const priceImageMap = {
 
 export const forWhoShortcuts = {
   "Rodzicom": "parents",
+  "Dziadkom": "grandparents",
   "Dzieciom do 6 lat": "kids",
   "Nastolatkom": "teens",
   "Drugiej Połówce": "partner",
   "Cioci i wujkowi": "family",
   "Bratu i siostrze": "siblings",
   "Przyjaciołom": "friends",
-  "Dziadkom": "grandparents"
 };
 
 export const recipientOptions = [
   { 
     src: `${process.env.PUBLIC_URL}/imagesApp/rodzice.png`, 
     description: 'Rodzicom' 
+  },
+  { 
+    src: `${process.env.PUBLIC_URL}/imagesApp/dziadkowie.png`, 
+    description: 'Dziadkom' 
+  },
+  { 
+    src: `${process.env.PUBLIC_URL}/imagesApp/druga_polowka.png`, 
+    description: 'Drugiej Połówce' 
   },
   { 
     src: `${process.env.PUBLIC_URL}/imagesApp/dzieci_do_6_lat.png`, 
@@ -383,25 +391,17 @@ export const recipientOptions = [
     description: 'Nastolatkom' 
   },
   { 
-    src: `${process.env.PUBLIC_URL}/imagesApp/druga_polowka.png`, 
-    description: 'Drugiej Połówce' 
+    src: `${process.env.PUBLIC_URL}/imagesApp/brat_siostra.png`, 
+    description: 'Bratu i siostrze' 
   },
   { 
     src: `${process.env.PUBLIC_URL}/imagesApp/ciocia_wujek.png`, 
     description: 'Cioci i wujkowi' 
   },
   { 
-    src: `${process.env.PUBLIC_URL}/imagesApp/brat_siostra.png`, 
-    description: 'Bratu i siostrze' 
-  },
-  { 
     src: `${process.env.PUBLIC_URL}/imagesApp/przyjaciele.png`, 
     description: 'Przyjaciołom' 
   },
-  { 
-    src: `${process.env.PUBLIC_URL}/imagesApp/dziadkowie.png`, 
-    description: 'Dziadkom' 
-  }
 ];
 
 export function generateProductFileNames(userForWho, productNames) {

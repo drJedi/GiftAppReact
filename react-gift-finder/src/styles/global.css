@@ -13,7 +13,9 @@
   --color-text-primary: #333333;
   --color-text-secondary: #666666;
   --color-text-inverse: #ffffff;
+  --color-text-subtitle:#646464;
   --color-accent: #667eea;
+  --color-accent-6:#f5efeb;
 
   /* Button gradient */
   --red-10:#F2b3b6;
@@ -32,6 +34,7 @@
   /* Shadows */
   --shadow-md: 0 8px 25px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 12px 35px rgba(0, 0, 0, 0.15);
+  --shadow-blg: 1 20px 45px rgba(0, 0, 0, 0.15);
   --shadow-btn: 0 4px 15px rgba(255, 107, 107, 0.3);
   --shadow-btn-hover: 0 6px 20px rgba(255, 107, 107, 0.4);
 
@@ -47,7 +50,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(135deg, var(--color-bg-gradient-start) 0%, var(--color-bg-gradient-end) 100%);
+  /* background: linear-gradient(135deg, var(--color-bg-gradient-start) 0%, var(--color-bg-gradient-end) 100%); */
+  background-color: var(--color-accent-6);
   min-height: 100vh;
   color: var(--color-text-primary);
 }

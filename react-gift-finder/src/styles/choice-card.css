@@ -8,6 +8,7 @@
   transition: all 0.3s ease;
   width: 100%;
   max-width: 200px;
+  max-height: 200px;
   margin: 0 auto;
   text-align: center;
   border: 3px solid transparent;
@@ -16,30 +17,31 @@
 .choice-card:hover {
   transform: translateY(-5px);
   box-shadow: var(--shadow-lg);
-  border-color: var(--color-accent);
+  border-color: var(--red-30);
+
 }
 
 .choice-card:active { transform: translateY(-2px); }
 
 @media (max-width: 768px) {
-  .choice-card { max-width: 150px; padding: 1rem; }
+  .choice-card { max-width: 150px; padding: 1rem; max-height: 150px; }
 }
 
 .choice-card.is-selected { border-color: var(--color-accent); background-color: var(--color-surface-tint); }
 
 .choice-card__image {
-  width: 80px;
-  height: 80px;
+  width: 120px;
+  height: 120px;
   object-fit: cover;
   border-radius: var(--radius-md);
-  margin-bottom: 1rem;
+  margin-bottom: .4rem;
   transition: transform 0.3s ease;
 }
 
 .choice-card:hover .choice-card__image { transform: scale(1.1); }
 
 @media (max-width: 768px) {
-  .choice-card__image { width: 60px; height: 60px; }
+  .choice-card__image { width: 80px; height: 80px; }
 }
 
 .choice-card__description {
