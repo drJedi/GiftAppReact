@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Button from './components/Button';
 import QuestionStep from './components/QuestionStep';
 import ResultsStep from './components/ResultsStep';
+import Newsletter from './components/newsletter';
 import { 
   recipientOptions, 
   productAttributes, 
@@ -47,17 +48,24 @@ const App = () => {
   ];
 
   const handleStart = () => {
+    // Przejdź do kroku newslettera
     setCurrentStep(1);
   };
 
+  const handleNewsletterDone = () => {
+    // Po zapisie lub pominięciu, przejdź do pierwszego pytania
+    setCurrentStep(2);
+  };
+
   const handleChoiceSelect = (choice) => {
-    const currentStepKey = steps[currentStep - 1].key;
+    // currentStep: 2 odpowiada pierwszemu pytaniu (index 0)
+    const currentStepKey = steps[currentStep - 2].key;
     setUserChoices(prev => ({
       ...prev,
       [currentStepKey]: choice
     }));
 
-    if (currentStep < steps.length) {
+    if (currentStep < steps.length + 1) {
       setCurrentStep(prev => prev + 1);
     } else {
       setCurrentStep(prev => prev + 1);
@@ -106,15 +114,23 @@ const App = () => {
       );
     }
 
-    if (currentStep <= steps.length) {
-      const step = steps[currentStep - 1];
+    if (currentStep === 1) {
+      return (
+        <div className="app__newsletter-step">
+          <Newsletter onSuccess={handleNewsletterDone} onSkip={handleNewsletterDone} />
+        </div>
+      );
+    }
+
+    if (currentStep <= steps.length + 1) {
+      const step = steps[currentStep - 2];
       return (
         <QuestionStep
           title={step.title}
           choices={step.choices}
           onChoiceSelect={handleChoiceSelect}
           selectedChoice={userChoices[step.key]}
-          step={currentStep}
+          step={currentStep - 1}
           totalSteps={steps.length + 1}
         />
       );
