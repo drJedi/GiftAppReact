@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/GiftAppReact/static/css/main.7afdc396.css",
+    "main.js": "/GiftAppReact/static/js/main.c407efc4.js",
+    "index.html": "/GiftAppReact/index.html",
+    "main.7afdc396.css.map": "/GiftAppReact/static/css/main.7afdc396.css.map",
+    "main.c407efc4.js.map": "/GiftAppReact/static/js/main.c407efc4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7afdc396.css",
+    "static/js/main.c407efc4.js"
+  ]
+}
