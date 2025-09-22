@@ -19,37 +19,9 @@ const Newsletter = ({ onSuccess, onSkip }) => {
     if (isInvalid) {
       setError(true);
     } else {
-<<<<<<< HEAD
-      // Zakoduj cały adres email (np. @ -> %40) zamiast składać z dwóch części
-      const emailEncoded = encodeURIComponent(email);
-      const referrer = encodeURIComponent(window.location.href);
-      const isDev = process.env.NODE_ENV === 'development';
-
-      if (isDev) {
-        const urlPath = `/api/newsletter/web/email/signin.rest?email=${emailEncoded}&kid=29241&referrer=${referrer}&language=pl&redirect=false`;
-        fetch(urlPath, { method: 'GET' })
-          .then(async (res) => {
-            const text = await res.text();
-            console.log('Newsletter response status (dev):', res.status, text);
-            if (typeof onSuccess === "function") onSuccess(email);
-            return text;
-          })
-          .catch((e) => {
-            console.log('Newsletter request error (dev):', e);
-            if (typeof onSuccess === "function") onSuccess(email);
-          });
-      } else {
-        // Production (GitHub Pages) – brak proxy. Wyślij bezpośrednio z no-cors i ignoruj odpowiedź.
-        const urlProd = `https://www.cewe.pl/web/email/signin.rest?email=${emailEncoded}&kid=29241&referrer=${referrer}&language=pl&redirect=false`;
-        fetch(urlProd, { method: 'GET', mode: 'no-cors' })
-          .finally(() => {
-            if (typeof onSuccess === "function") onSuccess(email);
-          });
-=======
       console.log(email);
       if (typeof onSuccess === "function") {
         onSuccess(email);
->>>>>>> parent of 8256daf (comit)
       }
     }
   };

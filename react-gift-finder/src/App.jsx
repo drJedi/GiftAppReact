@@ -47,19 +47,7 @@ const App = () => {
   ];
 
   const handleStart = () => {
-<<<<<<< HEAD
-
-    try {
-      const skipped = localStorage.getItem('newsletterSkipped') === '1';
-      if (skipped) {
-        setCurrentStep(2);
-        return;
-      }
-    } catch {}
-
-=======
     // Przejdź do kroku newslettera
->>>>>>> parent of 8256daf (comit)
     setCurrentStep(1);
   };
 
