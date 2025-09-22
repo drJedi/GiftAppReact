@@ -21,7 +21,7 @@ const Newsletter = ({ onSuccess, onSkip }) => {
       const emailEncoded = encodeURIComponent(email);
       const referrer = encodeURIComponent(window.location.href);
       const isDev = process.env.NODE_ENV === 'development';
-
+      //cos tutaj trzeba poprawic kod z AI ?
       if (isDev) {
         const urlPath = `/api/newsletter/web/email/signin.rest?email=${emailEncoded}&kid=29241&referrer=${referrer}&language=pl&redirect=false`;
         fetch(urlPath, { method: 'GET' })
@@ -45,7 +45,7 @@ const Newsletter = ({ onSuccess, onSkip }) => {
       }
     }
   };
-
+ // koniec kodu z AI - trzeba popracować sprawdzic czy w produkcji bedzie działać
   const handleSkip = () => {
     try {
       localStorage.setItem('newsletterSkipped', '1');

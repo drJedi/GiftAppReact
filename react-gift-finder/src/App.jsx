@@ -112,7 +112,7 @@ const App = () => {
       return { ...product, src: img ? img.src : "" };
     });
   };
-
+//poczatek krecenia
   const renderCurrentStep = () => {
     if (currentStep === 0) {
       return (
