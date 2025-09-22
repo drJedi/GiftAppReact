@@ -47,7 +47,7 @@ const App = () => {
   ];
 
   const handleStart = () => {
-<<<<<<< HEAD
+
     try {
       const skipped = localStorage.getItem('newsletterSkipped') === '1';
       if (skipped) {
@@ -55,8 +55,7 @@ const App = () => {
         return;
       }
     } catch {}
-=======
->>>>>>> parent of c443f2e (again)
+
     setCurrentStep(1);
   };
 
