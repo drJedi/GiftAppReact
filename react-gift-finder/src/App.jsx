@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Button from './components/Button';
 import QuestionStep from './components/QuestionStep';
 import ResultsStep from './components/ResultsStep';
+import Newsletter from './components/newsletter';
 import { 
   recipientOptions, 
   productAttributes, 
@@ -47,18 +48,35 @@ const App = () => {
   ];
 
   const handleStart = () => {
-    // Przejdź do kroku newslettera
+    // Jeśli użytkownik pominął newsletter wcześniej, przejdź od razu do pytań
+    try {
+      const skipped = localStorage.getItem('newsletterSkipped') === '1';
+      if (skipped) {
+        setCurrentStep(2);
+        return;
+      }
+    } catch {}
     setCurrentStep(1);
   };
 
+  const handleNewsletterDone = () => {
+    // Po zapisie lub pominięciu newslettera przejdź do pierwszego pytania
+    setCurrentStep(2);
+  };
+
   const handleChoiceSelect = (choice) => {
-    const currentStepKey = steps[currentStep - 1].key;
+    const stepIndex = currentStep - 2; // pytania zaczynają się od kroku 2
+    const currentStepKey = steps[stepIndex]?.key;
+    if (!currentStepKey) {
+      // poza zakresem kroków pytań – nic nie rób
+      return;
+    }
     setUserChoices(prev => ({
       ...prev,
       [currentStepKey]: choice
     }));
 
-    if (currentStep < steps.length) {
+    if (currentStep < steps.length + 1) {
       setCurrentStep(prev => prev + 1);
     } else {
       setCurrentStep(prev => prev + 1);
@@ -107,15 +125,26 @@ const App = () => {
       );
     }
 
-    if (currentStep <= steps.length) {
-      const step = steps[currentStep - 1];
+    // Krok 1: newsletter
+    if (currentStep === 1) {
+      return (
+        <div className="app__newsletter-step">
+          <Newsletter onSuccess={handleNewsletterDone} onSkip={handleNewsletterDone} />
+        </div>
+      );
+    }
+
+    // Kroki pytań zaczynają się od 2
+    if (currentStep <= steps.length + 1) {
+      const step = steps[currentStep - 2];
       return (
         <QuestionStep
           title={step.title}
           choices={step.choices}
           onChoiceSelect={handleChoiceSelect}
+          onBack={() => setCurrentStep(prev => Math.max(1, prev - 1))}
           selectedChoice={userChoices[step.key]}
-          step={currentStep}
+          step={currentStep - 1}
           totalSteps={steps.length + 1}
         />
       );

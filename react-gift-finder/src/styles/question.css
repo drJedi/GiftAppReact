@@ -5,6 +5,7 @@
   padding: 2rem 1rem;
   animation: slideIn 0.5s ease-out;
   /* display: grid; */ /* Usuń lub zamień na display: block; */
+  position: relative;
 }
 
 .question__title {
@@ -65,4 +66,23 @@
 }
 
 
+/* Przycisk cofania w lewym dolnym rogu */
+.question__back {
+  position: absolute;
+  left: 1.5rem;
+  bottom: 1.5rem;
+}
+
+/* Zarezerwuj miejsce na przycisk, aby nie nachodził na siatkę kart */
+.question { padding-bottom: 5rem; }
+
+/* Na mniejszych ekranach ustaw w normalnym przepływie, bez nakładania */
+@media (max-width: 768px) {
+  .question__back {
+    position: static;
+    display: inline-block;
+    margin-top: 1rem;
+  }
+  .question { padding-bottom: 2rem; }
+}
 

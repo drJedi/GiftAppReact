@@ -5,6 +5,7 @@ const QuestionStep = ({
   title, 
   choices, 
   onChoiceSelect, 
+  onBack,
   selectedChoice, 
   step, 
   totalSteps 
@@ -17,6 +18,9 @@ const QuestionStep = ({
       <div className="question__progress">
         <div className="question__progressFill" style={{ width: `${progress}%` }} />
       </div>
+      {onBack && (
+        <button className="question__back" type="button" onClick={onBack}>Cofnij</button>
+      )}
       
       <h2 className="question__title">{title}</h2>
       
