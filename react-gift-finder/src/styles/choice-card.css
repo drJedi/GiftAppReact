@@ -27,7 +27,7 @@
   .choice-card { max-width: 150px; padding: 1rem; max-height: 150px; }
 }
 
-.choice-card.is-selected { border-color: var(--color-accent); background-color: var(--color-surface-tint); }
+.choice-card.is-selected { border-color: var(--red-30); background-color: var(--color-surface-tint); }
 
 .choice-card__image {
   width: 120px;
