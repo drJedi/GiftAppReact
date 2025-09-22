@@ -48,7 +48,13 @@ const App = () => {
   ];
 
   const handleStart = () => {
-    // Przejdź do kroku newslettera
+    try {
+      const skipped = localStorage.getItem('newsletterSkipped') === '1';
+      if (skipped) {
+        setCurrentStep(2);
+        return;
+      }
+    } catch {}
     setCurrentStep(1);
   };
 
@@ -70,6 +76,10 @@ const App = () => {
     } else {
       setCurrentStep(prev => prev + 1);
     }
+  };
+
+  const handleBack = () => {
+    setCurrentStep(prev => Math.max(1, prev - 1));
   };
 
   const handleReset = () => {
@@ -129,6 +139,7 @@ const App = () => {
           title={step.title}
           choices={step.choices}
           onChoiceSelect={handleChoiceSelect}
+          onBack={handleBack}
           selectedChoice={userChoices[step.key]}
           step={currentStep - 1}
           totalSteps={steps.length + 1}
