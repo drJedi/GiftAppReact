@@ -3,7 +3,6 @@ import Header from './components/Header';
 import Button from './components/Button';
 import QuestionStep from './components/QuestionStep';
 import ResultsStep from './components/ResultsStep';
-import Newsletter from './components/newsletter';
 import { 
   recipientOptions, 
   productAttributes, 
@@ -48,6 +47,7 @@ const App = () => {
   ];
 
   const handleStart = () => {
+<<<<<<< HEAD
     try {
       const skipped = localStorage.getItem('newsletterSkipped') === '1';
       if (skipped) {
@@ -55,23 +55,19 @@ const App = () => {
         return;
       }
     } catch {}
+=======
+>>>>>>> parent of c443f2e (again)
     setCurrentStep(1);
   };
 
-  const handleNewsletterDone = () => {
-    // Po zapisie lub pominięciu, przejdź do pierwszego pytania
-    setCurrentStep(2);
-  };
-
   const handleChoiceSelect = (choice) => {
-    // currentStep: 2 odpowiada pierwszemu pytaniu (index 0)
-    const currentStepKey = steps[currentStep - 2].key;
+    const currentStepKey = steps[currentStep - 1].key;
     setUserChoices(prev => ({
       ...prev,
       [currentStepKey]: choice
     }));
 
-    if (currentStep < steps.length + 1) {
+    if (currentStep < steps.length) {
       setCurrentStep(prev => prev + 1);
     } else {
       setCurrentStep(prev => prev + 1);
@@ -124,16 +120,8 @@ const App = () => {
       );
     }
 
-    if (currentStep === 1) {
-      return (
-        <div className="app__newsletter-step">
-          <Newsletter onSuccess={handleNewsletterDone} onSkip={handleNewsletterDone} />
-        </div>
-      );
-    }
-
-    if (currentStep <= steps.length + 1) {
-      const step = steps[currentStep - 2];
+    if (currentStep <= steps.length) {
+      const step = steps[currentStep - 1];
       return (
         <QuestionStep
           title={step.title}
@@ -141,7 +129,7 @@ const App = () => {
           onChoiceSelect={handleChoiceSelect}
           onBack={handleBack}
           selectedChoice={userChoices[step.key]}
-          step={currentStep - 1}
+          step={currentStep}
           totalSteps={steps.length + 1}
         />
       );
