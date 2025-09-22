@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 const Newsletter = ({ onSuccess, onSkip }) => {
   const [email, setEmail] = useState("");
   const [error, setError] = useState(false);
@@ -13,13 +14,12 @@ const Newsletter = ({ onSuccess, onSkip }) => {
       email
     );
     console.log(isInvalid)
-
-    let user='';
-    let prefix='';
+    // let urlNews=`https://www.cewe.pl/web/email/signin.rest?email=${user}%${prefix}&kid=29241&referrer=https%3A%2F%2Fwww.cewe.pl%2Fblog%2Fwskazowki-projektowe%2Fzrob-wlasne-puzzle.html&language=pl&redirect=false`;
 
     if (isInvalid) {
       setError(true);
     } else {
+<<<<<<< HEAD
       // Zakoduj cały adres email (np. @ -> %40) zamiast składać z dwóch części
       const emailEncoded = encodeURIComponent(email);
       const referrer = encodeURIComponent(window.location.href);
@@ -45,36 +45,33 @@ const Newsletter = ({ onSuccess, onSkip }) => {
           .finally(() => {
             if (typeof onSuccess === "function") onSuccess(email);
           });
+=======
+      console.log(email);
+      if (typeof onSuccess === "function") {
+        onSuccess(email);
+>>>>>>> parent of 8256daf (comit)
       }
     }
   };
 
-  const handleSkip = () => {
-    try {
-      localStorage.setItem('newsletterSkipped', '1');
-    } catch {}
-    if (typeof onSkip === "function") onSkip();
-  };
-
   return (
     <div className="newsletter">
-      <section className="newsletter-section">
-      <img src={`${process.env.PUBLIC_URL}/imagesApp/newsletterImg.png`} alt="newsletter" className="newsletter-img" />
+      <section>
         <h2 className="newsletter-title">Zapisz się do newslettera</h2>
-        <p className="newsletter-text"> i odbierz -15% <br/> na fotoproduty CEWE</p>
+        <p className="newsletter-text">Zapisz się do newslettera i odbierz -15% na fotoprodukty CEWE</p>
 
         <div className="newsletter-form">
           <div className="newsletter-input-wrapper">
           <input name="email"
-            className={`newsletter-input ${error ? "error" : ""}`}
+            className={error ? "error" : ""}
             type="email"
-            placeholder="Adres e-mail"
+            placeholder="Twój email"
             value={email}
             onChange={(e) => handleChange(e.target.value)}
             />
-          <button className="newsletter-button" onClick={handleSubmit}>Zapisz się</button>
+          <button className="newsletter-button" onClick={handleSubmit}>Zapisz</button>
             </div>
-          <button className="newsletter-button-skip" onClick={handleSkip} type="button">Pomiń</button>
+          <button className="newsletter-button-skip" onClick={onSkip} type="button">Pomiń</button>
         </div>
         {error && <small className="error-text">Podaj poprawny adres email.</small>}
       </section>

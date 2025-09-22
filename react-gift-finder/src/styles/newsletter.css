@@ -1,28 +1,15 @@
 .newsletter{
     width: 100%;
     height: 100%;
+    border: 2px solid red;
     border-radius: var(--radius-lg);
     background-color: var(--color-bg-gradient-start);
-    
+    /* position: relative; */
 }
-.newsletter-section{
-    width: 350px;
-    height: 500px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-}
-.newsletter-img{
-    box-sizing: content-box;
-    width: 60%;
-    height: auto;
-    padding: 1.5rem 0 0.5rem 0;
-}
+
 .newsletter-title{
     background-color: inherit;
-    font-size: 2rem;
+    font-size: 5rem;
     text-align: center;
     padding: 1rem 1.5rem .3rem 1.5rem ;
 }
@@ -32,43 +19,35 @@
     padding: .2rem 1rem 1.5rem 2.5rem ;
 }
 .newsletter-button{
-    background-color: var(--red-50);
-    color: white;
-    font-size: 1rem;
-    border: none;
-    border-radius: 8px;
-    padding: 0.6rem 1rem;
-    cursor: pointer;
-    width: 100%;
-    max-width: 280px;
+    background-color: inherit;
+    font-size: 1.rem;
+    border: 2;
 }
 
 .newsletter-button-skip{
-    background-color: transparent;
-    font-size: 1rem;
-    color: var(--color-text-subtitle);
-    margin-top: 0.5rem;
-    cursor: pointer;
+    background-color: inherit;
+    font-size: 1.1rem;
+    color: var(--red-50);
+    order: 2;
+    /* position: absolute; */
+    /* right: 15px; */
 }
 .newsletter-form{
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
+    flex-direction: row;
+    align-items: flex-start;
+    align-content: flex-start;
+    justify-content: space-around;
+    gap: 1rem;
 }
 .newsletter-input-wrapper{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
+    align-content: center;
     justify-content: center;
-    gap: 0.5rem;
-    width: 100%;
+    gap: 1rem;
 }
 .newsletter-input{
-    width: 100%;
-    max-width: 280px;
-    padding: 0.6rem 0.75rem;
-    border: 1px solid var(--darkgrey-130);
-    border-radius: 8px;
+    flex-wrap: wrap;
 }

@@ -47,6 +47,7 @@ const App = () => {
   ];
 
   const handleStart = () => {
+<<<<<<< HEAD
 
     try {
       const skipped = localStorage.getItem('newsletterSkipped') === '1';
@@ -56,6 +57,9 @@ const App = () => {
       }
     } catch {}
 
+=======
+    // Przejdź do kroku newslettera
+>>>>>>> parent of 8256daf (comit)
     setCurrentStep(1);
   };
 
@@ -71,10 +75,6 @@ const App = () => {
     } else {
       setCurrentStep(prev => prev + 1);
     }
-  };
-
-  const handleBack = () => {
-    setCurrentStep(prev => Math.max(1, prev - 1));
   };
 
   const handleReset = () => {
@@ -126,7 +126,6 @@ const App = () => {
           title={step.title}
           choices={step.choices}
           onChoiceSelect={handleChoiceSelect}
-          onBack={handleBack}
           selectedChoice={userChoices[step.key]}
           step={currentStep}
           totalSteps={steps.length + 1}
