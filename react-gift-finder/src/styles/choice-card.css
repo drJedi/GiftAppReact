@@ -56,5 +56,61 @@
   .choice-card__description { font-size: 0.8rem; }
 }
 
+html body #root .choice-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 200px;
+  max-height: 200px;
+  margin: 0 auto;
+  text-align: center;
+  border: 3px solid transparent;
+}
+
+html body #root .choice-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--red-30);
+}
+
+html body #root .choice-card:active { transform: translateY(-2px); }
+
+@media (max-width: 768px) {
+  html body #root .choice-card { max-width: 150px; padding: 1rem; max-height: 150px; }
+}
+
+html body #root .choice-card.is-selected { border-color: var(--red-30); background-color: var(--color-surface-tint); }
+
+html body #root .choice-card__image {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  margin-bottom: .4rem;
+  transition: transform 0.3s ease;
+}
+
+html body #root .choice-card:hover .choice-card__image { transform: scale(1.1); }
+
+@media (max-width: 768px) {
+  html body #root .choice-card__image { width: 80px; height: 80px; }
+}
+
+html body #root .choice-card__description {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  line-height: 1.4;
+  word-wrap: break-word;
+}
+
+@media (max-width: 768px) {
+  html body #root .choice-card__description { font-size: 0.8rem; }
+}
+
 
 

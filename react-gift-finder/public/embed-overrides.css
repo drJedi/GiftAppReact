@@ -1,0 +1,44 @@
+/* Scoped overrides for embedded app under #root.
+   Load this AFTER main.css to neutralize host styles. */
+
+html body #root, html body #root * {
+  box-sizing: border-box !important;
+}
+
+/* Base typography/colors for the app container */
+html body #root {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif !important;
+  line-height: 1.4 !important;
+  color: var(--color-text-primary, #333) !important;
+  background-color: var(--color-accent-6, #f5efeb) !important;
+}
+
+/* Reset common element margins within the app */
+html body #root h1,
+html body #root h2,
+html body #root h3,
+html body #root h4,
+html body #root h5,
+html body #root h6 { margin: 0 0 .5rem !important; font-weight: 600 !important; }
+
+html body #root p { margin: 0 0 1rem !important; }
+
+html body #root ul,
+html body #root ol { margin: 0 0 1rem 1.25rem !important; padding: 0 !important; }
+
+html body #root button,
+html body #root input,
+html body #root select,
+html body #root textarea { font: inherit !important; }
+
+/* Ensure our main container layout wins */
+html body #root .app { display: flex !important; flex-direction: column !important; min-height: 100vh !important; }
+html body #root .app__main { display: flex !important; align-items: center !important; justify-content: center !important; }
+
+/* Buttons */
+html body #root .btn { background: var(--red-50, #C30c15) !important; color: #fff !important; }
+html body #root .btn:hover { transform: scale(1.05) !important; }
+
+/* Images */
+html body #root img { max-width: 100% !important; height: auto !important; display: block !important; }

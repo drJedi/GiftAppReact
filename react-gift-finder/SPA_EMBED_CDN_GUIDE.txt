@@ -1,0 +1,193 @@
+Osadzanie aplikacji React SPA w istniejącej stronie z zasobami na CDN
+
+Cel
+- Wykorzystać obecną stronę (z istniejącą nawigacją i footerem)
+- Zamontować tę aplikację React wewnątrz dedykowanego kontenera (<div> root)
+- Serwować zbudowane pliki JS/CSS/obrazy z CDN
+
+Plan wysokopoziomowy
+1) Zbuduj aplikację w trybie produkcyjnym
+2) Wgraj artefakty buildu na CDN
+3) Dodaj kontener montowania (<div id="...">) do istniejącej strony
+4) Podepnij z CDN pliki CSS/JS w tej stronie
+5) Zapewnij działanie routingu SPA (fallback lub HashRouter)
+6) Skonfiguruj cache i CORS
+
+Szczegóły
+
+1) Build aplikacji
+- W katalogu projektu (react-gift-finder):
+  npm ci
+  npm run build
+- Wynik znajdziesz w react-gift-finder/build/
+  - index.html
+  - static/css/... (haszowane nazwy plików)
+  - static/js/... (haszowane nazwy plików)
+  - imagesApp/... (obrazy)
+  - asset-manifest.json (mapuje logiczne nazwy na haszowane pliki)
+
+2) Upload na CDN
+- Wgraj cały katalog build/ na CDN pod ścieżkę, np.:
+  https://cdn.example.com/react-gift-finder/
+- Po wgraniu pliki będą dostępne np. pod:
+  https://cdn.example.com/react-gift-finder/index.html
+  https://cdn.example.com/react-gift-finder/static/js/main.XXXX.js
+  https://cdn.example.com/react-gift-finder/static/css/main.XXXX.css
+
+Opcjonalnie, ale zalecane (konwencje Create React App):
+- Ustaw "homepage" w package.json na bazowy adres CDN przed buildem, np.:
+  "homepage": "https://cdn.example.com/react-gift-finder"
+  Następnie wykonaj świeży build. Dzięki temu index.html użyje bezwzględnych URL-i oparych o %PUBLIC_URL%.
+- Alternatywnie serwuj index.html z Twojej strony (origin), a wyłącznie zasoby (CSS/JS/obrazy) z CDN. Wtedy trzeba w index.html wskazać CDN w tagach <link> i <script>, albo użyć kroku wdrożeniowego, który przepisać ścieżki na podstawie asset-manifest.json.
+
+3) Kontener montowania w istniejącej stronie
+- W miejscu, w którym ma działać aplikacja (strona już ma nawigację i footer), dodaj kontener:
+  <div id="gift-app-root"></div>
+- Umieść go dokładnie tam, gdzie SPA ma się renderować w układzie.
+
+4) Ładowanie zasobów SPA z CDN
+- W tej samej stronie (lub szablonie) dołącz linki do zbudowanych CSS i JS z CDN.
+- Przykładowy szkielet (użyj faktycznych haszowanych nazw; patrz asset-manifest.json):
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.example.com/react-gift-finder/static/css/main.408a010b.css" />
+
+  <!-- Kontener root -->
+  <div id="gift-app-root"></div>
+
+  <!-- JS (zalecany defer) -->
+  <script defer src="https://cdn.example.com/react-gift-finder/static/js/main.XXXX.js"></script>
+
+- Ważne: Domyślnie projekt renderuje do elementu o id="root" (patrz src/index.jsx). Masz dwie opcje:
+  a) Zmień id kontenera w stronie hostującej na <div id="root"></div>, albo
+  b) Zmień w src/index.jsx montowanie na "gift-app-root" zamiast "root", potem zrób rebuild.
+
+5) Opcje routingu SPA
+- Jeśli aplikacja używa routingu po stronie klienta i osadzasz ją pod ścieżką (np. /gift), rozważ:
+  Opcja A: Użyj HashRouter, wtedy adresy zawierają # i serwer nie wymaga reguł fallback.
+  Opcja B: Zostaw BrowserRouter, ale skonfiguruj serwer www, by nieznane ścieżki kierował do index.html (fallback SPA). Przykłady:
+    - Nginx: location /gift { try_files $uri /gift/index.html; }
+    - Apache: Rewrite do index.html, gdy plik/katalog nie istnieje
+    - IIS: web.config z przepisywaniem na /gift/index.html
+- Jeżeli tylko zasoby są na CDN, a sama strona pochodzi z Twojego serwera, głównie zadbaj o prawidłowe URL-e CDN; fallback routingu obsługuje serwer origin, jeśli serwuje shell aplikacji.
+
+6) Cache i CORS
+- Cache:
+  - Haszowane pliki JS/CSS można keszować agresywnie: Cache-Control: public, max-age=31536000, immutable
+  - index.html powinien mieć krótki TTL lub no-cache, aby szybko dostarczać nowe referencje do zasobów
+- CORS:
+  - <script> i <link> wskazujące na CDN zwykle nie wymagają preflightu CORS
+  - Fonty/obrazy wczytywane przez CSS mogą potrzebować Access-Control-Allow-Origin: * (lub Twój origin)
+  - Upewnij się, że CDN serwuje poprawne typy MIME (text/javascript, text/css, image/*)
+
+7) asset-manifest.json (opcjonalna automatyzacja)
+- Plik build/asset-manifest.json mapuje logiczne nazwy na haszowane pliki. W szablonach serwera możesz go odczytać i automatycznie wstrzyknąć właściwe URL-e, unikając ręcznej aktualizacji nazw przy każdym wdrożeniu.
+
+8) Wersjonowanie ścieżek CDN (opcjonalne)
+- Aby uniknąć kolizji cache, publikuj każdy build pod wersjonowaną ścieżką, np.: https://cdn.example.com/react-gift-finder/v1.2.3/
+- Strona hostująca referuje konkretną wersję. Aktualizacja do nowej wersji to bezpieczna, atomowa zmiana.
+
+Minimalny przykład (fragment strony hostującej)
+- Dostosuj ID i nazwy plików do Twojego buildu.
+
+  <!-- istniejący header/nawigacja -->
+
+  <link rel="stylesheet" href="https://cdn.example.com/react-gift-finder/static/css/main.408a010b.css" />
+
+  <main>
+    <div id="root"></div>
+  </main>
+
+  <script defer src="https://cdn.example.com/react-gift-finder/static/js/main.bf44790d.js"></script>
+
+  <!-- istniejący footer -->
+
+Rozwiązywanie problemów
+- Pusta strona / React nie znajduje kontenera: Upewnij się, że id w stronie hosta odpowiada id użytemu w src/index.jsx.
+- 404 dla zasobów: Sprawdź ścieżki CDN i obecność plików; potwierdź ustawienia "homepage" lub PUBLIC_URL przed buildem.
+- Brak stylów: Zweryfikuj, że <link> CSS wskazuje poprawną haszowaną nazwę i jest serwowany jako text/css.
+- Mixed content: Używaj HTTPS zarówno dla strony origin, jak i CDN.
+- 404 przy odświeżeniu na trasie: Użyj HashRouter lub skonfiguruj serwerowe przepisywanie na index.html jak wyżej.
+
+Gdzie zmienić ID montowania (jeśli potrzebne)
+- Plik: react-gift-finder/src/index.jsx
+- Zmień document.getElementById('root') na document.getElementById('gift-app-root') i zrób rebuild.
+
+Lista kontrolna wdrożenia
+- Build zakończony bez błędów
+- CDN zawiera pliki z build/
+- Strona hostująca zawiera: kontener <div>, <link> CSS, <script> JS
+- Prawidłowe ID montowania
+- Nagłówki cache ustawione (immutable dla haszowanych zasobów)
+- Skonfigurowany fallback routingu lub HashRouter
+
+Fragment do wklejenia w <head> strony (CEWE CDN)
+
+Wariant prosty (zalecany)
+- Najmniej wrażliwy na polityki CSP/edytory CMS.
+- Upewnij się, że na stronie jest `<div id="root"></div>`.
+
+```html
+<link rel="stylesheet" href="https://cdn.cewe.pl/GiftAppReact/static/css/main.408a010b.css">
+<script defer src="https://cdn.cewe.pl/GiftAppReact/static/js/main.bf44790d.js"></script>
+```
+
+Opcjonalnie: preconnect (mikro-optymalizacja DNS/TLS)
+```html
+<link rel="preconnect" href="https://cdn.cewe.pl" crossorigin>
+```
+
+Opcjonalnie: preload (tylko jeśli CSP/edytor nie blokuje `onload`)
+```html
+<link rel="preload" as="style" href="https://cdn.cewe.pl/GiftAppReact/static/css/main.408a010b.css" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.cewe.pl/GiftAppReact/static/css/main.408a010b.css"></noscript>
+<link rel="preload" as="script" href="https://cdn.cewe.pl/GiftAppReact/static/js/main.bf44790d.js">
+```
+
+
+
+
+
+Wskazówki:
+
+- Jeśli Twoje oryginalne reguły odnosiły się do `body .app { ... }`, użyj `html body #root .app { ... }`.
+- Dla pojedynczych sporów możesz dodać `!important` lub zwiększyć specyficzność (np. `html body #root .app ...`).
+
+Sekcja: Minimalny loader JS (bez dodawania <style>)
+
+Użyj tego wariantu, jeśli system wkleja kod DO wnętrza istniejącego <script>…</script>. Skrypt nie tworzy żadnych tagów <style>, a jedynie dodaje <link> do CSS i <script> do JS oraz upewnia się, że istnieje kontener #root.
+
+```javascript
+(function () {
+  function onReady(fn) {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', fn, { once: true });
+    } else {
+      fn();
+    }
+  }
+
+  onReady(function () {
+    // Upewnij się, że istnieje kontener #root (bez usuwania klas/stylów hosta)
+    var root = document.getElementById('root');
+    if (!root) {
+      root = document.createElement('div');
+      root.id = 'root';
+      (document.body || document.documentElement).appendChild(root);
+    }
+
+    // Dodaj CSS (tylko <link>)
+    var css = document.createElement('link');
+    css.rel = 'stylesheet';
+    css.href = 'https://cdn.cewe.pl/GiftAppReact/static/css/main.408a010b.css';
+    document.head.appendChild(css);
+
+    // Dodaj JS (tylko <script src>)
+    var js = document.createElement('script');
+    js.src = 'https://cdn.cewe.pl/GiftAppReact/static/js/main.bf44790d.js';
+    js.defer = true;
+    document.body.appendChild(js);
+  });
+})();
+```
+
+Uwaga: Ten loader nie wstawia żadnych stylów inline ani tagów <style>. Jeśli potrzebujesz dodatkowych korekt CSS, wprowadzaj je w osobnych arkuszach lub w sekcji <head> strony, nie w JS.

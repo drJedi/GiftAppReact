@@ -33,5 +33,39 @@
   .btn { padding: 0.8rem 1.5rem; font-size: 1rem; }
 }
 
+html body #root .btn {
+  background: var(--red-50);
+  color: var(--color-text-inverse);
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  box-shadow: var(--shadow-btn);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  animation: pulse 5s infinite;
+}
+
+html body #root .btn:hover {
+  animation: none;
+  transform: scale(1.05);
+  box-shadow: var(--shadow-btn-hover);
+}
+
+html body #root .btn:active { transform: translateY(0); }
+
+html body #root .btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+@media (max-width: 768px) {
+  html body #root .btn { padding: 0.8rem 1.5rem; font-size: 1rem; }
+}
+
 
 
