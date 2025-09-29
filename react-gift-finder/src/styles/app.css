@@ -1,7 +1,27 @@
+/* Desktop styles */
+html body #root {
+  max-height: 83vh;
+}
+
+/* Mobile styles - override desktop max-height */
+@media (max-width: 768px) {
+  html body #root {
+    /* height: 100vh !important; */
+    max-height: 130vh !important;
+  }
+}
+
 html body #root .app {
-  min-height: 100vh;
+  min-height: 80vh;
   display: flex;
   flex-direction: column;
+}
+
+/* Mobile adjustments for app container */
+@media (max-width: 768px) {
+  html body #root .app {
+    min-height: 100vh;
+  }
 }
 
 html body #root .app__main {
@@ -19,5 +39,6 @@ html body #root .app__welcome {
 }
 
 @media (max-width: 768px) {
-  html body #root .app__main{ max-height: 70%;}
+  html body #root .app__main{ max-height: 100% !important;}
 }
+

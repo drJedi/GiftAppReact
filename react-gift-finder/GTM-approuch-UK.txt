@@ -1,0 +1,137 @@
+// Gamification iframe
+class CWUKGamificationEmbed {
+ 
+    constructor(url, height) {
+ 
+        this.url = url;
+        this.height = height;
+        this.loadAssets();
+ 
+    }
+ 
+    loadAssets() {
+ 
+        const self = this;
+        const cwuk_helper = new CWUK_Helper();
+ 
+        cwuk_helper.loadScript('https://files.cdn.leadfamly.com/campaign/sdk/utilities.responsive_iframe.min.js?v=' + Date.now() + Math.random(), function () {
+ 
+            self.embedIframe();
+ 
+        });
+ 
+    }
+ 
+    embedIframe() {
+ 
+        let placeholder = document.querySelectorAll('.sg-cw-section');
+ 
+        if (placeholder.length) {
+ 
+            const iframe = document.createElement('iframe');
+            iframe.src = this.url;
+            iframe.setAttribute("allow", "autoplay; fullscreen");
+            //iframe.setAttribute("data-no-scroll-into-view", "true");
+            iframe.style.border = "none";
+            iframe.style.width = "100%";
+            iframe.style.height = this.height;
+ 
+            placeholder[0].appendChild(iframe);
+ 
+        }
+ 
+    }
+ 
+}
+ 
+// Gamification tracking
+class CWUKGamificationTracking {
+ 
+    constructor(origin) {
+ 
+        this.origin = origin;
+        this.attachListeners();
+ 
+    }
+ 
+    attachListeners() {
+ 
+        const self = this;
+ 
+        if (window.addEventListener) {
+            addEventListener("message", function(event) {
+                self.receiveMessage(event);
+            }, false);
+        }
+        else {
+            attachEvent("onmessage", function(event) {
+                self.receiveMessage(event);
+            });
+        }
+ 
+    }
+ 
+    receiveMessage(event) {
+ 
+        if (event.origin === this.origin) {
+ 
+            var message = JSON.parse(event.data);
+ 
+            console.log(message);
+ 
+            if (message.hasOwnProperty('type') && message.hasOwnProperty('value') && message.hasOwnProperty('campaign') && message.hasOwnProperty('stage')) {
+ 
+                if (message.type == 'cwuk-track-click') {
+ 
+                    this.trackEvent(message.value, message.campaign, message.stage);
+ 
+                }
+ 
+            }
+ 
+        }
+ 
+    }
+ 
+    trackEvent(value, campaign, stage) {
+ 
+        let event = '';
+ 
+        switch (stage) {
+ 
+            case 'start':
+ 
+                event = 'event92';
+ 
+                break;
+ 
+            case 'end':
+ 
+                event = 'event93';
+ 
+                break;
+ 
+            default:
+                break;
+ 
+        }
+ 
+        if (event != '') {
+ 
+            console.log(event, campaign);
+ 
+            if (typeof s != "undefined") {
+                s.linkTrackVars = "events,eVar124";
+                s.eVar124 = campaign;
+                s.linkTrackEvents = event;
+                s.events = event;
+                //s.tl(true, "o", campaign.replace(/\s+/g, '-').toLowerCase());
+                s.tl(true, "o", 'cwuk-gamification');
+                s.clearVars();
+            }
+ 
+        }
+ 
+    }
+ 
+}

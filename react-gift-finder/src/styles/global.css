@@ -43,6 +43,7 @@
   --radius-lg: 20px;
   --radius-md: 15px;
   --radius-pill: 50px;
+  --font-base:"CEWEText";
 }
 
 html body #root {

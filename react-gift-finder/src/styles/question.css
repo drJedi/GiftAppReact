@@ -1,91 +1,3 @@
-.question {
-  max-width: 1000px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 2rem 1rem;
-  animation: slideIn 0.5s ease-out;
-  /* display: grid; */ /* Usuń lub zamień na display: block; */
-  position: relative;
-}
-
-.question__title {
-  font-size: 2rem;
-  font-weight: 600;
-  color: var(--red-50);
-  text-align: center;
-  margin-bottom: 2rem;
-  /* text-shadow: .5px .5px .5px rgba(0, 0, 0, 0.3); */
-}
-
-@media (max-width: 768px) {
-  .question__title { font-size: 1.5rem; }
-}
-
-.question__grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); /* domyślnie 4 kolumny */
-  gap: 1.5rem;
-  align-items: center;
-}
-
-/* Jeśli są dokładnie 3 karty, ustaw 3 kolumny */
-.question__grid:has(> :nth-child(3)):not(:has(> :nth-child(4))) {
-  grid-template-columns: repeat(3, 1fr);
-  justify-content: center;
-}
-
-/* Jeśli są mniej niż 3 karty, ustaw tyle kolumn ile jest kart i wyśrodkuj */
-.question__grid:has(> :nth-child(2)):not(:has(> :nth-child(3))) {
-  grid-template-columns: repeat(2, 1fr);
-  justify-content: center;
-}
-.question__grid:has(> :nth-child(1)):not(:has(> :nth-child(2))) {
-  grid-template-columns: 1fr;
-  justify-content: center;
-}
-
-@media (max-width: 768px) {
-  .question__grid { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1rem; }
-}
-
-.question__progress {
-  width: 100%;
-  max-width: 400px;
-  height: 8px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 4px;
-  margin: 0 auto 2rem;
-  overflow: hidden;
-}
-
-.question__progressFill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--red-10), var(--red-70));
-  border-radius: 4px;
-  transition: width 0.3s ease;
-}
-
-
-/* Przycisk cofania w lewym dolnym rogu */
-.question__back {
-  position: absolute;
-  left: 1.5rem;
-  bottom: 1.5rem;
-}
-
-/* Zarezerwuj miejsce na przycisk, aby nie nachodził na siatkę kart */
-.question { padding-bottom: 5rem; }
-
-/* Na mniejszych ekranach ustaw w normalnym przepływie, bez nakładania */
-@media (max-width: 768px) {
-  .question__back {
-    position: static;
-    display: inline-block;
-    margin-top: 1rem;
-  }
-  .question { padding-bottom: 2rem; }
-}
-
 html body #root .question {
   max-width: 1000px;
   width: 100%;
@@ -101,17 +13,37 @@ html body #root .question__title {
   color: var(--red-50);
   text-align: center;
   margin-bottom: 2rem;
-}
-
-html body #root .question__grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-  align-items: center;
+  /* text-shadow: .5px .5px .5px rgba(0, 0, 0, 0.3); */
 }
 
 @media (max-width: 768px) {
   html body #root .question__title { font-size: 1.5rem; }
+}
+
+html body #root .question__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* domyślnie 4 kolumny */
+  gap: 1.5rem;
+  align-items: center;
+}
+
+/* Jeśli są dokładnie 3 karty, ustaw 3 kolumny */
+html body #root .question__grid:has(> :nth-child(3)):not(:has(> :nth-child(4))) {
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+}
+
+/* Jeśli są mniej niż 3 karty, ustaw tyle kolumn ile jest kart i wyśrodkuj */
+html body #root .question__grid:has(> :nth-child(2)):not(:has(> :nth-child(3))) {
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: center;
+}
+html body #root .question__grid:has(> :nth-child(1)):not(:has(> :nth-child(2))) {
+  grid-template-columns: 1fr;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
   html body #root .question__grid { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1rem; }
 }
 
@@ -119,9 +51,9 @@ html body #root .question__progress {
   width: 100%;
   max-width: 400px;
   height: 8px;
-  background: rgba(255, 255, 255, 0.2);
+  background: #fff;
   border-radius: 4px;
-  margin: 0 auto 2rem;
+  margin: 0 auto 2rem !important;
   overflow: hidden;
 }
 
@@ -132,16 +64,47 @@ html body #root .question__progressFill {
   transition: width 0.3s ease;
 }
 
+
+/*przycisk cofania wysrodkowany? */
 html body #root .question__back {
   position: absolute;
-  left: 1.5rem;
-  bottom: 1.5rem;
+    left: 25rem;
+    right: 25rem;
+    margin: 0 auto;
+    bottom: 0;
+    width: 10%;
+    background-color: var(--red-50) !important;
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    color: var(--color-text-inverse);
+    transition: all 0.5s ease;
+}
+html body #root .question__back:hover {
+  transform: scale(1.05);
+  animation: none;
+  box-shadow: var(--shadow-btn-hover);
 }
 
+
+/* Zarezerwuj miejsce na przycisk, aby nie nachodził na siatkę kart */
 html body #root .question { padding-bottom: 5rem; }
 
+/* Na mniejszych ekranach ustaw w normalnym przepływie, bez nakładania */
 @media (max-width: 768px) {
-  html body #root .question__back { position: static; display: inline-block; margin-top: 1rem; }
-  html body #root .question { padding-bottom: 2rem; }
+  html body #root .question__back {
+    position: absolute;
+    left: 5rem;
+    right: 5rem;
+    bottom: -1rem;
+    background-color: var(--red-50) !important;
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    color: #fff;
+    width: 25%;
+    
+  }
+ 
+  html body #root .question { 
+    padding-bottom: 2rem; 
+  }
 }
-

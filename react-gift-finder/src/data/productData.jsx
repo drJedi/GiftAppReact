@@ -22,6 +22,13 @@ export const productAttributes = {
   }
 };
 
+// Central base for images (allows CDN override)
+// Prefer setting REACT_APP_IMAGE_BASE to e.g. "https://cdn.cewe.pl/GiftAppReact/imagesApp"
+const IMAGE_BASE =
+  (typeof process !== 'undefined' && process.env && process.env.REACT_APP_IMAGE_BASE)
+    ? process.env.REACT_APP_IMAGE_BASE
+    : `${process.env.PUBLIC_URL}/imagesApp`;
+
 export const produuctRelations ={
   "Rodzicom": {
       "Pamiątka na lata": {
@@ -64,7 +71,7 @@ export const produuctRelations ={
     },
     "Kreatywny": {
       "Subtelny gest": ["Zdjęcia mini","Kartki z wkładką foto", "Fotoplakat PREMIUM"],
-      "Wyjątkowy akcent": ["CEWE FOTOKSIĄŻKA Kids", "Etiu ze smyczą", "Planer A5"],
+      "Wyjątkowy akcent": ["CEWE FOTOKSIĄŻKA Kids", "Etui ze smyczą", "Planer A5"],
       "Królestwo możliwości": ["CEWE FOTOKSIĄŻKA kwadratowa XL", "Fotoobraz na płótnie", "Kalendarz ścienny z drewnianą listwą"]
     }
   },
@@ -138,7 +145,7 @@ export const produuctRelations ={
     "Pamiątka na lata": {
       "Subtelny gest": ["Kubek z wakacji", "CEWE FOTOKSIĄŻKA zbiór wspomnień", "Kalendarz dla podróżnika"],
       "Wyjątkowy akcent": ["CEWE FOTOKSIĄŻKA z wakacji", "Kalendarz dla brata", "Etui drewniane"],
-      "Królestwo możliwości": ["CEWE FOTOKSIĄŻKA kronika rodzinna", "Koc PREMIUM ze zdjęciem", "Fotoobraz na drewnie"]
+      "Królestwo możliwości": ["CEWE FOTOKSIĄŻKA Kronika rodzinna", "Koc PREMIUM ze zdjęciem", "Fotoobraz na drewnie"]
     },
     "Dekoracyjny": {
       "Subtelny gest": ["Kubek świąteczny", "Koc PREMIUM ze zdjęciem", "Fotoobraz na drewnie"],
@@ -203,7 +210,7 @@ export const produuctRelations ={
 };
 
 export const products = [
-  { name: "Brelok ze zdjęciem", src: "/imagesApp/brelok.jpg", description: 'Brelok ze zdjęciem', link: "https://www.cewe.pl/fotoprezenty/brelok-ze-zdjeciem.html" },
+  { name: "Brelok ze zdjęciem", src: `${IMAGE_BASE}/brelok.jpg`, description: 'Brelok ze zdjęciem', link: "https://www.cewe.pl/fotoprezenty/brelok-ze-zdjeciem.html" },
   { name: "Fotopuzzle PREMIUM", src: "", description: 'Puzzle z własnym zdjęciem', link: "https://www.cewe.pl/fotoprezenty/fotopuzzle-premium.html" },
   { name: "Personalizowany plakat", src: "", description: 'Plakat z własnym nadrukiem', link: "https://www.cewe.pl/fotoplakaty.html" },
   { name: "Torba PREMIUM ze zdjęciem", src: "", description: 'Torba PREMIUM ze zdjęciem', link: "https://www.cewe.pl/fotoprezenty/torba-premium-ze-zdjeciem.html" },
@@ -261,7 +268,7 @@ export const products = [
   {name:"Fotoplakat z mapą", src:"", description: 'Fotoplakat z mapą', link:"https://www.cewe.pl/fotoplakat/z-mapa.html"},
   {name:"Kartki z wkładką foto", src:"", description: 'Kartki z wkładką foto', link:"https://www.cewe.pl/kartka-ze-zdjeciem/kartki-z-wkladka-foto.html"},
   {name:"Fotoplakat PREMIUM", src:"", description: 'Fotoplakat PREMIUM', link:"https://www.cewe.pl/fotoplakat/premium.html"},
-  {name:"Etui ze smyczą", src:"", description: 'Etui ze smiance', link:"https://www.cewe.pl/etui-ze-zdjeciem/ze-smycza.html"},
+  {name:"Etui ze smyczą", src:"", description: 'Etui ze smycza', link:"https://www.cewe.pl/etui-ze-zdjeciem/ze-smycza.html"},
   {name:"Kalendarz ścienny z drewnianą listwą", src:"", description: 'Kalendarz ścienny z drewnianą listwą', link:"https://www.cewe.pl/kalendarz-ze-zdjeciami/scienny-z-drewniana-listwa.html"},
   {name:"CEWE FOTOKSIĄŻKA dla męża", src:"", description: 'CEWE FOTOKSIĄŻKA dla męża', link:"https://www.cewe.pl/cewe-fotoksiazka/pomysly/fotoksiazka-dla-meza.html"},
   {name:"Kalendarz dla żony", src:"", description: 'Kalendarz dla żony', link:"https://www.cewe.pl/kalendarz-ze-zdjeciami/pomysly/kalendarz-dla-zony.html"},
@@ -368,38 +375,39 @@ export const forWhoShortcuts = {
   "Bratu i siostrze": "siblings",
   "Przyjaciołom": "friends",
 };
-
+let imageBase = `https://cdn.cewe.pl/GiftAppReact/imagesApp`;
 export const recipientOptions = [
+  
   { 
-    src: `${process.env.PUBLIC_URL}/imagesApp/rodzice.png`, 
+    src: `${imageBase}/rodzice.png`, 
     description: 'Rodzicom' 
   },
   { 
-    src: `${process.env.PUBLIC_URL}/imagesApp/dziadkowie.png`, 
+    src: `${imageBase}/dziadkowie.png`, 
     description: 'Dziadkom' 
   },
   { 
-    src: `${process.env.PUBLIC_URL}/imagesApp/druga_polowka.png`, 
+    src: `${imageBase}/druga_polowka.png`, 
     description: 'Drugiej Połówce' 
   },
   { 
-    src: `${process.env.PUBLIC_URL}/imagesApp/dzieci_do_6_lat.png`, 
+    src: `${imageBase}/dzieci_do_6_lat.png`, 
     description: 'Dzieciom do 6 lat' 
   },
   { 
-    src: `${process.env.PUBLIC_URL}/imagesApp/nastolatki.png`, 
+    src: `${imageBase}/nastolatki.png`, 
     description: 'Nastolatkom' 
   },
   { 
-    src: `${process.env.PUBLIC_URL}/imagesApp/brat_siostra.png`, 
+    src: `${imageBase}/brat_siostra.png`, 
     description: 'Bratu i siostrze' 
   },
   { 
-    src: `${process.env.PUBLIC_URL}/imagesApp/ciocia_wujek.png`, 
+    src: `${imageBase}/ciocia_wujek.png`, 
     description: 'Cioci i wujkowi' 
   },
   { 
-    src: `${process.env.PUBLIC_URL}/imagesApp/przyjaciele.png`, 
+    src: `${imageBase}/przyjaciele.png`, 
     description: 'Przyjaciołom' 
   },
 ];
@@ -427,9 +435,10 @@ export function generateProductFileNames(userForWho, productNames) {
   return productNames.map(product => {
     const normalizedProduct = normalizeText(product.toLowerCase());
     console.log(normalizedProduct)
+    let imageBase = `https://cdn.cewe.pl/GiftAppReact/imagesApp`;
     return {
       name: product,
-      src: `${process.env.PUBLIC_URL}/imagesApp/${normalizedProduct}.jpg`
+      src: `${imageBase}/${normalizedProduct}.jpg`
     };
   });
 }

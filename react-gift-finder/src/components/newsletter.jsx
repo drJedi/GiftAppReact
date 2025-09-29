@@ -56,22 +56,24 @@ const Newsletter = ({ onSuccess, onSkip }) => {
   return (
     <div className="newsletter">
       <section className="newsletter-section">
-      <img src={`${process.env.PUBLIC_URL}/imagesApp/newsletterImg.webp`} alt="newsletter" className="newsletter-img" />
-        <h2 className="newsletter-title">Zapisz się do newslettera</h2>
-        <p className="newsletter-text"> i odbierz -15% <br/> na fotoprodukty CEWE</p>
+      <img src={`https://cdn.cewe.pl/GiftAppReact/imagesApp/newsletterImg.webp`} alt="newsletter" className="newsletter-img" />
+        <h2 className="newsletter-title">Jeszcze zanim zaczniesz - NIESPODZIANKA na start!</h2>
+        <p className="newsletter-text">Zapisz się do newslettera i odbierz <br/> -15%  na fotoprodukty CEWE</p>
 
         <div className="newsletter-form">
           <div className="newsletter-input-wrapper">
           <input name="email"
             className={`newsletter-input ${error ? "error" : ""}`}
             type="email"
-            placeholder="Adres e-mail"
+            placeholder="Wpisz adres e-mail"
             value={email}
             onChange={(e) => handleChange(e.target.value)}
             />
-          <button className="newsletter-button" onClick={handleSubmit}>Zapisz się</button>
+          <button className="newsletter-button" onClick={handleSubmit}>ZAPISUJE SIĘ I SZUKAM PREZENTU</button>
             </div>
-          <button className="newsletter-button-skip" onClick={handleSkip} type="button">Pomiń</button>
+            
+          <button className="newsletter-button-skip" onClick={handleSkip} type="button">pomijam</button>
+          <p className="newsletter-text-bottom">Klikając „ZAPISUJĘ SIĘ”  dołączasz do społeczności CEWE. Cieszymy się, że jesteś z nami! Ty decydujesz, jak długo będzie trwała nasza wspólna przygoda.</p>
         </div>
         {error && <small className="error-text">Podaj poprawny adres email.</small>}
       </section>
