@@ -18,7 +18,7 @@ const ResultsStep = ({ products, onReset }) => {
       ) : (
         <div className="results__grid">
           {products.slice(0, 3).map((product, index) => (
-            <ProductCard key={index} product={product} />
+            <ProductCard key={index} product={product} moduleName="product-card" />
           ))}
         </div>
       )}
