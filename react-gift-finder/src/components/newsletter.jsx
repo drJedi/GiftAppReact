@@ -17,35 +17,81 @@ const Newsletter = ({ onSuccess, onSkip }) => {
     if (isInvalid) {
       setError(true);
     } else {
-      // Zakoduj cały adres email (np. @ -> %40)
+      // 
       const emailEncoded = encodeURIComponent(email);
       const referrer = encodeURIComponent(window.location.href);
       const isDev = process.env.NODE_ENV === 'development';
-      //cos tutaj trzeba poprawic kod z AI ?
+      
+      // Poprzednie rozwiązanie z no-cors (nie pozwalało na obsługę odpowiedzi):
+      // fetch(urlProd, { method: 'GET', mode: 'no-cors' })
+      //   .finally(() => { onSuccess(email); });
+      
       if (isDev) {
-        const urlPath = `/api/newsletter/web/email/signin.rest?email=${emailEncoded}&kid=29241&referrer=${referrer}&language=pl&redirect=false`;
+        const urlPath = `/web/email/signin.rest?email=${emailEncoded}&kid=29241&referrer=${referrer}&language=pl&redirect=false`;
         fetch(urlPath, { method: 'GET' })
           .then(async (res) => {
             const text = await res.text();
             console.log('Newsletter response status (dev):', res.status, text);
-            if (typeof onSuccess === "function") onSuccess(email);
+            
+            if (res.ok) {
+              // Wywołanie dataLayer przy sukcesie
+              if (window.ceweDataLayer) {
+                window.ceweDataLayer.push({
+                  action: 'CWC_ON_NEWSLETTER_SIGNUP_SUCCESS',
+                  payLoad: {
+                    usage: 'default'
+                  }
+                });
+                console.log('✅ ceweDataLayer event sent: CWC_ON_NEWSLETTER_SIGNUP_SUCCESS');
+              } else {
+                console.log('ℹ️ ceweDataLayer not available (dev mode) - event would be sent in production');
+              }
+              if (typeof onSuccess === "function") onSuccess(email);
+            } else {
+              console.error('Newsletter signup failed:', res.status);
+              setError(true);
+            }
             return text;
           })
           .catch((e) => {
-            console.log('Newsletter request error (dev):', e);
-            if (typeof onSuccess === "function") onSuccess(email);
+            console.error('Newsletter request error (dev):', e);
+            setError(true);
           });
       } else {
-        // Production (GitHub Pages) – brak proxy. Wyślij bezpośrednio z no-cors i ignoruj odpowiedź.
+        
         const urlProd = `https://www.cewe.pl/web/email/signin.rest?email=${emailEncoded}&kid=29241&referrer=${referrer}&language=pl&redirect=false`;
-        fetch(urlProd, { method: 'GET', mode: 'no-cors' })
-          .finally(() => {
-            if (typeof onSuccess === "function") onSuccess(email);
+        fetch(urlProd, { method: 'GET' })
+          .then(async (res) => {
+            const text = await res.text();
+            console.log('Newsletter response status (prod):', res.status, text);
+            
+            if (res.ok) {
+              // Wywołanie dataLayer przy sukcesie
+              if (window.ceweDataLayer) {
+                window.ceweDataLayer.push({
+                  action: 'CWC_ON_NEWSLETTER_SIGNUP_SUCCESS',
+                  payLoad: {
+                    usage: 'default'
+                  }
+                });
+                console.log('✅ ceweDataLayer event sent: CWC_ON_NEWSLETTER_SIGNUP_SUCCESS');
+              } else {
+                console.warn('⚠️ ceweDataLayer not available - check if app is embedded on cewe.pl');
+              }
+              if (typeof onSuccess === "function") onSuccess(email);
+            } else {
+              console.error('Newsletter signup failed:', res.status);
+              setError(true);
+            }
+            return text;
+          })
+          .catch((e) => {
+            console.error('Newsletter request error (prod):', e);
+            setError(true);
           });
       }
     }
   };
- // koniec kodu z AI - trzeba popracować sprawdzic czy w produkcji bedzie działać
   const handleSkip = () => {
     try {
       localStorage.setItem('newsletterSkipped', '1');

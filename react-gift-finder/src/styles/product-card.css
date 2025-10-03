@@ -12,6 +12,7 @@ html body #root .product-card {
   font-family: var(--font-base);
 }
 
+
 html body #root .product-card:hover {
   transform: translateY(-5px);
   box-shadow: var(--shadow-lg);
@@ -38,8 +39,8 @@ html body #root .product-card:hover .product-card__image {
 }
 
 html body #root .product-card__name {
-  font-size: .9rem;
-  font-weight: 500;
+  font-size: 1rem;
+  font-weight: 700;
   color: var(--color-text-primary);
   padding-top: .3rem;
   margin-bottom: 0.5rem;
