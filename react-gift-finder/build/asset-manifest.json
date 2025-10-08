@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/GiftAppReact/static/css/main.7e218544.css",
-    "main.js": "/GiftAppReact/static/js/main.fb2ba447.js",
+    "main.css": "/GiftAppReact/static/css/main.cc28b554.css",
+    "main.js": "/GiftAppReact/static/js/main.200c628c.js",
     "index.html": "/GiftAppReact/index.html",
-    "main.7e218544.css.map": "/GiftAppReact/static/css/main.7e218544.css.map",
-    "main.fb2ba447.js.map": "/GiftAppReact/static/js/main.fb2ba447.js.map"
+    "main.cc28b554.css.map": "/GiftAppReact/static/css/main.cc28b554.css.map",
+    "main.200c628c.js.map": "/GiftAppReact/static/js/main.200c628c.js.map"
   },
   "entrypoints": [
-    "static/css/main.7e218544.css",
-    "static/js/main.fb2ba447.js"
+    "static/css/main.cc28b554.css",
+    "static/js/main.200c628c.js"
   ]
 }

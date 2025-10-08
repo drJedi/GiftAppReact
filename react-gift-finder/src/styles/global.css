@@ -40,6 +40,7 @@
   --shadow-btn-hover: 0 6px 20px rgba(255, 107, 107, 0.4);
 
   /* Radii */
+  --radius-sm: 8px;
   --radius-lg: 20px;
   --radius-md: 15px;
   --radius-pill: 50px;

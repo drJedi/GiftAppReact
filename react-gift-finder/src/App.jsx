@@ -103,12 +103,12 @@ const App = () => {
     );
     const productNames = matchedProducts.map(p => p.name);
     const images = generateProductFileNames(userChoices.recipient, productNames);
-    console.log(productNames)
-    console.log(images)
+    // console.log(productNames)
+    // console.log(images)
   
     return matchedProducts.map(product => {
       const img = images.find(i => i.name === product.name);
-      console.log(img)
+      // console.log(img)
       return { ...product, src: img ? img.src : "" };
     });
   };

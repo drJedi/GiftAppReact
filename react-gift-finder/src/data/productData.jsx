@@ -31,7 +31,7 @@ const IMAGE_BASE =
 export const produuctRelations ={
   "Rodzicom": {
       "Pamiątka na lata": {
-        "Subtelny gest": ["CEWE FOTOKSIĄŻKA kwadratowa mała", "Zdjęcie w ramce", "Zdjęcie kwadratowe"],
+        "Subtelny gest": ["CEWE FOTOKSIĄŻKA kwadratowa mała", "Zdjęcie w ramce", "Zdjęcia kwadratowe"],
         "Wyjątkowy akcent": ["CEWE FOTOKSIĄŻKA dla rodziców", "Koc PREMIUM ze zdjęciem", "Kalendarz biurkowy eko"],
         "Królestwo możliwości": ["CEWE FOTOKSIĄŻKA kwadratowa XL", "Kalendarz ścienny Fineline", "Fotoobraz wieloczęściowy"]
   },
@@ -66,7 +66,7 @@ export const produuctRelations ={
     "Osobisty": {
       "Subtelny gest": ["Kubek ceramiczny ze zdjęciem","Zdjęcia retro","Brelok ze zdjęciem"],
       "Wyjątkowy akcent": ["Pudełko ze zdjęciami","Fotoplakat PREMIUM w ramie","CEWE FOTOKSIĄŻKA dla dziadków"],
-      "Królestwo możliwości": ["CEWE FOTOKSIĄŻKA A4* pionowa", "Poduszka PREMIUM ze zdjęciem", "Fotoplakat z mapą"]
+      "Królestwo możliwości": ["CEWE FOTOKSIĄŻKA A4* pionowa", "Poduszka PREMIUM w kształcie serca ze zdjęciem", "Fotoplakat z mapą"]
     },
     "Kreatywny": {
       "Subtelny gest": ["Zdjęcia mini","Kartki z wkładką foto", "Fotoplakat PREMIUM"],
@@ -76,7 +76,7 @@ export const produuctRelations ={
   },
   "Drugiej Połówce": {
     "Pamiątka na lata": {
-      "Subtelny gest": ["CEWE FOTOKSIĄŻKA dla dziewczyny", "Zdjęcie w ramce", "Zdjęcie kwadratowe"],
+      "Subtelny gest": ["CEWE FOTOKSIĄŻKA dla dziewczyny", "Zdjęcie w ramce", "Zdjęcia kwadratowe"],
       "Wyjątkowy akcent":["CEWE FOTOKSIĄŻKA dla męża","Fotoplakat z mapą", "Kalendarz dla żony"],
       "Królestwo możliwości": ["CEWE FOTOKSIĄŻKA na rocznicę związku","Kalendarz dla mężczyzny","Fotoobraz wieloczęściowy"]
     },
@@ -114,7 +114,7 @@ export const produuctRelations ={
     },
     "Kreatywny": {
       "Subtelny gest": ["Podkładka pod myszkę ze zdjęciem","CEWE FOTOKSIĄŻKA bajka","Fotopuzzle w ramce"],
-      "Wyjątkowy akcent": ["Gra fotomemory","CEWE FOTOKSIĄŻKA dla dziecka","Kredki Faber-Castell Colour Grip ze zdjęciem"],
+      "Wyjątkowy akcent": ["Gra fotomemory","CEWE FOTOKSIĄŻKA dla dziecka","Koc PREMIUM ze zdjęciem"],
       "Królestwo możliwości": ["Kredki Faber-Castell Goldfaber Aqua ze zdjęciem","CEWE FOTOKSIĄŻKA komiks","Fotopuzzle Ravensburger"]
     }
   },
@@ -142,7 +142,7 @@ export const produuctRelations ={
   },
   "Bratu i siostrze": {
     "Pamiątka na lata": {
-      "Subtelny gest": ["Kubek z wakacji", "CEWE FOTOKSIĄŻKA zbiór wspomnień", "Kalendarz dla podróżnika"],
+      "Subtelny gest": ["Kubek świąteczny","Magnesy ze zdjęciem","CEWE FOTOKSIĄŻKA dla brata"],
       "Wyjątkowy akcent": ["CEWE FOTOKSIĄŻKA z wakacji", "Kalendarz dla brata", "Etui drewniane"],
       "Królestwo możliwości": ["CEWE FOTOKSIĄŻKA Kronika rodzinna", "Koc PREMIUM ze zdjęciem", "Fotoobraz na drewnie"]
     },
@@ -259,9 +259,9 @@ export const products =
     "globalName": "cp-photos:prints-framed:pip"
   },
   {
-    "name": "Zdjęcie kwadratowe",
+    "name": "Zdjęcia kwadratowe",
     "src": "",
-    "description": "Zdjęcie kwadratowe",
+    "description": "Zdjęcia kwadratowe",
     "link": "https://www.cewe.pl/zdjecia/kwadratowe.html",
     "globalName": "cp-gifts:art-prints:square-prints:pip"
   },

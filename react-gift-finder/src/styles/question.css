@@ -28,7 +28,7 @@ html body #root .question__grid {
 }
 
 /* Jeśli są dokładnie 3 karty, ustaw 3 kolumny */
-html body #root .question__grid:has(> :nth-child(3)):not(:has(> :nth-child(4))) {
+html body #root .question__grid:has(> :nth-child(3)):not(:has(> :nth-child(4)))  {
   grid-template-columns: repeat(3, 1fr);
   justify-content: center;
 }
@@ -37,6 +37,7 @@ html body #root .question__grid:has(> :nth-child(3)):not(:has(> :nth-child(4))) 
 html body #root .question__grid:has(> :nth-child(2)):not(:has(> :nth-child(3))) {
   grid-template-columns: repeat(2, 1fr);
   justify-content: center;
+  
 }
 html body #root .question__grid:has(> :nth-child(1)):not(:has(> :nth-child(2))) {
   grid-template-columns: 1fr;
@@ -44,7 +45,9 @@ html body #root .question__grid:has(> :nth-child(1)):not(:has(> :nth-child(2))) 
 }
 
 @media (max-width: 768px) {
-  html body #root .question__grid { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1rem; }
+  html body #root .question__grid { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1rem; 
+  }
+
 }
 
 html body #root .question__progress {
@@ -68,14 +71,16 @@ html body #root .question__progressFill {
 /*przycisk cofania wysrodkowany? */
 html body #root .question__back {
   position: absolute;
-    left: 25rem;
-    right: 25rem;
+    left: 1.8rem;
+    /* right: 25rem; */
     margin: 0 auto;
     bottom: 0;
     width: 10%;
+    height: 1.5rem;
     background-color: var(--red-50) !important;
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-sm);
     font-size: 1rem;
+    font-family: inherit;
     color: var(--color-text-inverse);
     transition: all 0.5s ease;
 }
@@ -97,7 +102,7 @@ html body #root .question { padding-bottom: 5rem; }
     right: 5rem;
     bottom: -1rem;
     background-color: var(--red-50) !important;
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-sm);
     font-size: 1rem;
     color: #fff;
     width: 25%;

@@ -1,15 +1,15 @@
 /* Desktop styles */
-html body #root {
+/* html body #root {
   max-height: 83vh;
-}
+} */
 
 /* Mobile styles - override desktop max-height */
-@media (max-width: 768px) {
-  html body #root {
+/* @media (max-width: 768px) {
+  html body #root { */
     /* height: 100vh !important; */
-    max-height: 130vh !important;
-  }
-}
+    /* max-height: 130vh !important; */
+  /* }
+} */
 
 html body #root .app {
   min-height: 80vh;

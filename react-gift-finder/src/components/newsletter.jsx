@@ -12,7 +12,7 @@ const Newsletter = ({ onSuccess, onSkip }) => {
     const isInvalid = !/^[A-Za-z0-9._%+-]{1,64}@(?:[A-Za-z0-9-]{1,63}\.){1,125}[A-Za-z]{2,63}$/.test(
       email
     );
-    console.log(isInvalid)
+    // console.log(isInvalid)
 
     if (isInvalid) {
       setError(true);
@@ -31,7 +31,7 @@ const Newsletter = ({ onSuccess, onSkip }) => {
         fetch(urlPath, { method: 'GET' })
           .then(async (res) => {
             const text = await res.text();
-            console.log('Newsletter response status (dev):', res.status, text);
+            // console.log('Newsletter response status (dev):', res.status, text);
             
             if (res.ok) {
               // Wywołanie dataLayer przy sukcesie
@@ -42,19 +42,19 @@ const Newsletter = ({ onSuccess, onSkip }) => {
                     usage: 'default'
                   }
                 });
-                console.log('✅ ceweDataLayer event sent: CWC_ON_NEWSLETTER_SIGNUP_SUCCESS');
+                // console.log('✅ ceweDataLayer event sent: CWC_ON_NEWSLETTER_SIGNUP_SUCCESS');
               } else {
-                console.log('ℹ️ ceweDataLayer not available (dev mode) - event would be sent in production');
+                // console.log('ℹ️ ceweDataLayer not available (dev mode) - event would be sent in production');
               }
               if (typeof onSuccess === "function") onSuccess(email);
             } else {
-              console.error('Newsletter signup failed:', res.status);
+              // console.error('Newsletter signup failed:', res.status);
               setError(true);
             }
             return text;
           })
           .catch((e) => {
-            console.error('Newsletter request error (dev):', e);
+            // console.error('Newsletter request error (dev):', e);
             setError(true);
           });
       } else {
@@ -63,7 +63,7 @@ const Newsletter = ({ onSuccess, onSkip }) => {
         fetch(urlProd, { method: 'GET' })
           .then(async (res) => {
             const text = await res.text();
-            console.log('Newsletter response status (prod):', res.status, text);
+            // console.log('Newsletter response status (prod):', res.status, text);
             
             if (res.ok) {
               // Wywołanie dataLayer przy sukcesie
@@ -74,19 +74,19 @@ const Newsletter = ({ onSuccess, onSkip }) => {
                     usage: 'default'
                   }
                 });
-                console.log('✅ ceweDataLayer event sent: CWC_ON_NEWSLETTER_SIGNUP_SUCCESS');
+                // console.log('✅ ceweDataLayer event sent: CWC_ON_NEWSLETTER_SIGNUP_SUCCESS');
               } else {
-                console.warn('⚠️ ceweDataLayer not available - check if app is embedded on cewe.pl');
+                // console.warn('⚠️ ceweDataLayer not available - check if app is embedded on cewe.pl');
               }
               if (typeof onSuccess === "function") onSuccess(email);
             } else {
-              console.error('Newsletter signup failed:', res.status);
+              // console.error('Newsletter signup failed:', res.status);
               setError(true);
             }
             return text;
           })
           .catch((e) => {
-            console.error('Newsletter request error (prod):', e);
+            // console.error('Newsletter request error (prod):', e);
             setError(true);
           });
       }
